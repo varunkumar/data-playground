@@ -9,6 +9,7 @@
 
     /* Modules */
     "baseUrl": ".",
+    "jsx": "react",
     "module": "esnext",
     "moduleResolution": "node",
     "paths": {
@@ -54,7 +55,6 @@
 
     /* Language and Environment */
     "target": "esnext",
-    "jsx": "preserve",
     "lib": ["dom", "dom.iterable", "esnext"],
 
     /* Projects */

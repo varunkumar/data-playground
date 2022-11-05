@@ -18,73 +18,73 @@
  */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-import React, { useState, useEffect, useMemo, useRef } from 'react';
-import { CSSTransition } from 'react-transition-group';
-import { useDispatch, useSelector } from 'react-redux';
-import PropTypes from 'prop-types';
-import Split from 'react-split';
-import { t, styled, useTheme } from '@superset-ui/core';
+import { styled, t, useTheme } from '@superset-ui/core';
+import { isEmpty } from 'lodash';
 import debounce from 'lodash/debounce';
 import throttle from 'lodash/throttle';
-import Modal from 'src/components/Modal';
 import Mousetrap from 'mousetrap';
-import Button from 'src/components/Button';
-import Timer from 'src/components/Timer';
-import ResizableSidebar from 'src/components/ResizableSidebar';
+import PropTypes from 'prop-types';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import Split from 'react-split';
+import { CSSTransition } from 'react-transition-group';
 import { AntdDropdown, AntdSwitch } from 'src/components';
+import Button from 'src/components/Button';
+import { EmptyStateBig } from 'src/components/EmptyState';
+import Icons from 'src/components/Icons';
 import { Input } from 'src/components/Input';
 import { Menu } from 'src/components/Menu';
-import Icons from 'src/components/Icons';
-import { detectOS } from 'src/utils/common';
+import Modal from 'src/components/Modal';
+import ResizableSidebar from 'src/components/ResizableSidebar';
+import Timer from 'src/components/Timer';
+import { FeatureFlag, isFeatureEnabled } from 'src/featureFlags';
 import {
   addNewQueryEditor,
+  addSavedQueryToTabState,
   CtasEnum,
   estimateQueryCost,
   persistEditorHeight,
   postStopQuery,
+  queryEditorSetAndSaveSql,
   queryEditorSetAutorun,
   queryEditorSetSql,
-  queryEditorSetAndSaveSql,
   queryEditorSetTemplateParams,
   runQueryFromSqlEditor,
   saveQuery,
-  addSavedQueryToTabState,
   scheduleQuery,
   setActiveSouthPaneTab,
   updateSavedQuery,
-  validateQuery,
+  validateQuery
 } from 'src/SqlLab/actions/sqlLab';
 import {
-  STATE_TYPE_MAP,
-  SQL_EDITOR_GUTTER_HEIGHT,
-  SQL_EDITOR_GUTTER_MARGIN,
-  SQL_TOOLBAR_HEIGHT,
-  SQL_EDITOR_LEFTBAR_WIDTH,
-  SQL_EDITOR_PADDING,
   INITIAL_NORTH_PERCENT,
   INITIAL_SOUTH_PERCENT,
   SET_QUERY_EDITOR_SQL_DEBOUNCE_MS,
+  SQL_EDITOR_GUTTER_HEIGHT,
+  SQL_EDITOR_GUTTER_MARGIN,
+  SQL_EDITOR_LEFTBAR_WIDTH,
+  SQL_EDITOR_PADDING,
+  SQL_TOOLBAR_HEIGHT,
+  STATE_TYPE_MAP,
   VALIDATION_DEBOUNCE_MS,
-  WINDOW_RESIZE_THROTTLE_MS,
+  WINDOW_RESIZE_THROTTLE_MS
 } from 'src/SqlLab/constants';
+import { detectOS } from 'src/utils/common';
 import {
   getItem,
   LocalStorageKeys,
-  setItem,
+  setItem
 } from 'src/utils/localStorageHelpers';
-import { FeatureFlag, isFeatureEnabled } from 'src/featureFlags';
-import { EmptyStateBig } from 'src/components/EmptyState';
-import { isEmpty } from 'lodash';
-import TemplateParamsEditor from '../TemplateParamsEditor';
-import ConnectedSouthPane from '../SouthPane/state';
+import AceEditorWrapper from '../AceEditorWrapper';
+import EstimateQueryCostButton from '../EstimateQueryCostButton';
+import QueryLimitSelect from '../QueryLimitSelect';
+import RunQueryActionButton from '../RunQueryActionButton';
 import SaveQuery from '../SaveQuery';
 import ScheduleQueryButton from '../ScheduleQueryButton';
-import EstimateQueryCostButton from '../EstimateQueryCostButton';
 import ShareSqlLabQuery from '../ShareSqlLabQuery';
+import ConnectedSouthPane from '../SouthPane/state';
 import SqlEditorLeftBar from '../SqlEditorLeftBar';
-import AceEditorWrapper from '../AceEditorWrapper';
-import RunQueryActionButton from '../RunQueryActionButton';
-import QueryLimitSelect from '../QueryLimitSelect';
+import TemplateParamsEditor from '../TemplateParamsEditor';
 
 const appContainer = document.getElementById('app');
 const bootstrapData = JSON.parse(
@@ -563,6 +563,9 @@ const SqlEditor = ({
               isRunning={latestQuery.state === 'running'}
             />
           )}
+          <button type="button" className="btn" label="Ask AI">
+            Ask AI
+          </button>
         </div>
         <div className="rightItems">
           <span>

@@ -16,10 +16,13 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import React, { Suspense, useEffect } from 'react'; 
+import React, { Suspense, useEffect } from 'react';
 import { hot } from 'react-hot-loader/root';
 import {
-  BrowserRouter as Router, Route, Switch, useLocation
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  useLocation
 } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import ErrorBoundary from 'src/components/ErrorBoundary';
@@ -38,6 +41,8 @@ import { store } from 'src/views/store';
 import QueryProvider from './QueryProvider';
 import { RootContextProviders } from './RootContextProviders';
 import { ScrollToTop } from './ScrollToTop';
+
+React;
 
 setupApp();
 setupPlugins();
