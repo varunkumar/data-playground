@@ -520,7 +520,7 @@ const SqlEditor = ({
 Only use table(s) ${tableStr}.
 ${schemaStr}
 
-Input: ${sql}`,
+Input: ${sql}.`,
     );
 
     console.log(formData.get('question'));
