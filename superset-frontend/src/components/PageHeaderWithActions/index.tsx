@@ -16,18 +16,18 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import React, { ReactNode, ReactElement } from 'react';
 import { css, SupersetTheme, t, useTheme } from '@superset-ui/core';
+import React, { ReactElement, ReactNode } from 'react';
 import { AntdDropdown, AntdDropdownProps } from 'src/components';
 import { TooltipPlacement } from 'src/components/Tooltip';
+import Button from '../Button';
+import CertifiedBadge, { CertifiedBadgeProps } from '../CertifiedBadge';
 import {
   DynamicEditableTitle,
-  DynamicEditableTitleProps,
+  DynamicEditableTitleProps
 } from '../DynamicEditableTitle';
-import CertifiedBadge, { CertifiedBadgeProps } from '../CertifiedBadge';
 import FaveStar, { FaveStarProps } from '../FaveStar';
 import Icons from '../Icons';
-import Button from '../Button';
 
 export const menuTriggerStyles = (theme: SupersetTheme) => css`
   width: ${theme.gridUnit * 8}px;
