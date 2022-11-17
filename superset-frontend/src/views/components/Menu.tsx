@@ -19,7 +19,7 @@
 import { Global } from '@emotion/react';
 import { css, styled, SupersetTheme, useTheme } from '@superset-ui/core';
 import { debounce } from 'lodash';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Col, Grid, Row } from 'src/components';
 import { GenericLink } from 'src/components/GenericLink/GenericLink';

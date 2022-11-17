@@ -147,6 +147,8 @@ module.exports = {
         'react/static-property-placement': 0, // re-enable up for discussion
         'prettier/prettier': 'error',
         'file-progress/activate': 1,
+        'react/jsx-uses-react': 0,
+        'react/react-in-jsx-scope': 0,
       },
       settings: {
         'import/resolver': {

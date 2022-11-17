@@ -26,6 +26,7 @@ import ReactDOM from 'react-dom';
 import { theme } from 'src/preamble';
 import Menu from 'src/views/components/Menu';
 
+import React from 'react';
 import { Provider } from 'react-redux';
 import { setupStore } from './store';
 
