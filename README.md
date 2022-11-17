@@ -17,6 +17,17 @@ specific language governing permissions and limitations
 under the License.
 -->
 
+## Our contributions
+
+Extended Superset with following capabilities:
+
+- Ask AI. GPT-3 powered tool to query data using natural language
+- What-if analysis template.
+
+Built with 💗 @ Arcesium Hackathon 2022. Won the `Best Application of Data Analytics & Visualization` award in the hackathon. 
+
+----
+
 # Superset
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
